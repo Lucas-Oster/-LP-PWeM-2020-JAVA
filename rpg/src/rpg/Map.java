@@ -47,38 +47,51 @@ public class Map {
 			System.out.print("Erreur, cette zone est deja occuper !");
 		}
 	}
-	public void deplacerH() {
+	public int deplacerH() {
 		char tmp;
 
 		for(int i=0; i<nbLigne;i++) {
 			for(int j=0; j<nbColonne;j++) {
 				if (map[i][j] == 'J') {
 					if(i-1 >=0 && map[i-1][j] == '-') {
-					tmp = map[i][j];
-					map[i][j]='-';
-					map[i-1][j] = tmp;
+						tmp = map[i][j];
+						map[i][j]='-';
+						map[i-1][j] = tmp;
+						return 1;
 					}
+					if(i-1 >=0 && map[i-1][j] == 'M') {
+						tmp = map[i][j];
+						map[i][j] = '-';
+						map[i-1][j] = tmp;	
+						return 2;
+					}
+
 				}
+
+			}
 		}
-		
+		return 0;
+
 	}
-}
 	public void deplacerB() {
 		char tmp;
 
-		for(int i=0; i< nbLigne;i++) {
+		for(int i=0; i<nbLigne;i++) {
 			for(int j=0; j < nbColonne;j++) {
 				if (map[i][j] == 'J') {
 					if(i+1 <= nbLigne && map[i+1][j] == '-') {
-					tmp = map[i][j];
-					map[i][j]='-';
-					map[i+1][j] = tmp;
+						tmp = map[i][j];
+						map[i][j]='-';
+						map[i+1][j] = tmp;
+						return;
 					}
+
+
 				}
+			}
+
 		}
-		
 	}
-}
 	public void deplacerG() {
 		char tmp;
 
@@ -86,14 +99,14 @@ public class Map {
 			for(int j=0; j<nbColonne;j++) {
 				if (map[i][j] == 'J') {
 					if(j-1 >=0 && map[i][j-1] == '-') {
-					tmp = map[i][j];
-					map[i][j]='-';
-					map[i][j-1] = tmp;
-			}
-		}
-		
-	}}
-}
+						tmp = map[i][j];
+						map[i][j]='-';
+						map[i][j-1] = tmp;
+					}
+				}
+
+			}}
+	}
 	public void deplacerD() {
 		char tmp;
 
@@ -101,12 +114,17 @@ public class Map {
 			for(int j=0; j < nbColonne;j++) {
 				if (map[i][j] == 'J') {
 					if(j+1 <= nbColonne && map[i][j+1] == '-') {
-					tmp = map[i][j];
-					map[i][j]='-';
-					map[i][j+1] = tmp;
+						tmp = map[i][j];
+						map[i][j]='-';
+						map[i][j+1] = tmp;
+						break;
+					}
+				}
+
 			}
 		}
-		
+	}
+	public void StartCombat() {
+
 	}
 }
-}}
